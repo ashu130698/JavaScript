@@ -1,0 +1,9 @@
+document.body.style.backgroundColor = "lightblue";
+document.getElementById("heading").innerHTML = "Javascript";
+document.getElementById("heading").style.fontSize = "35px";
+document.getElementById("p1").innerHTML = "Javascript is a programming language that is used to make web pages interactive.";
+document.getElementById("p2").innerHTML = "It is a high-level, interpreted programming language that conforms to the ECMAScript specification.";
+document.getElementById("p3").innerHTML = "Javascript is a versatile language and is used to create dynamic content on the web.";
+document.getElementById("p1").style.color = "red";
+document.getElementById("p2").style.color = "green";
+document.getElementById("p3").style.color = "blue";
