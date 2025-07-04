@@ -1,0 +1,36 @@
+//Writeajavascriptfiletoconvertatwo-dimensionalarrayintoanobjectinJavaScript,print it on the console window of your browser?
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Filter</title>
+</head>
+<body>
+    <script type="text/javascript">
+        function arr2obj(arr) {
+            //create an element
+            let obj = {};
+
+            arr.forEach(v => {
+                //Extract the key and the value
+                let key = v[0];
+                let value = v[1];
+                //add key and value to new object
+                obj[key] = value;
+            });
+            //Return the object
+            return obj;
+        }
+        console.log (
+            arr2obj ([
+                ["Ram" , "Burger"],
+                ["Shyam", "Rolls"],
+                ["Rashee", "Tea"],
+                ["Aston", "coffe"]
+            ])
+        );
+    </script>
+    
+</body>
+</html>
