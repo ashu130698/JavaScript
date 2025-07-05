@@ -7,9 +7,12 @@
 </head>
 <body>
     <Script type="text/javascript">
-        var fruits = {
-            []
+        function haskey(obj, key){
+            return obj != null && hasOwnProperty.call(obj, key);
         }
+        let obj = {virat: 33, ROhit: 35, Dhoni: 39};
+        alert(haskey(obj, "Virat"));
+        console.log(haskey(obj, "Virat"));
     </Script>
 </body>
 </html>
