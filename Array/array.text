@@ -1,0 +1,7 @@
+Array vs Object 
+
+array are special type of object.
+In JS we use typeof operator to return an array object.
+Numbers are used to acces elements of an array and names are used to acces an memeber of an array.
+Array acan have diffrent type of variable.
+    
