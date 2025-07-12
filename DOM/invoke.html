@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>WithyourknowledgegainedinDOM,createawebpagewithabuttonthatinvokesdifferentfunctions in different events</p>
+    <button id="mybtn">Press</button>
+    <p id="demo"></p>
+    <script>
+        var a = document.getElementById("mybtn");
+        a.addEventListener("mouseover",funco);
+        a.addEventListener("click",funcu);
+        a.addEventListener("mouseout",funcc);
+
+        function funco() {
+            document.getElementById("demo").innerHTML += "Moused over!<br>" ;
+        }
+        function funcu () {
+            document.getElementById("demo").innerHTML += "Clicked!<br>";
+        }
+        function funcc () {
+            document.getElementById("demo").innerHTML += "Moused out!<br>";
+        }
+        
+    </script>
+</body>
+</html>
