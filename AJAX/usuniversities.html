@@ -1,0 +1,120 @@
+/* <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            height: 100%;
+            background-image: linear-gradient(to right, rgb(211,235,238), rgb(37,169,173));
+            font-family: "Montserrat", "Helvetica Neue", "sans-seriff";
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>fetching and displaying data table...</h1>
+        <table id="table" class="table"></table>
+    </div>
+    <script>
+        fetch(' http://universities.hipolabs.com/search?country=United+States')
+        .then(res => res.json())
+        .then(json => show(json))
+            function show(universities) {
+                let table = document.getElementById('table');
+                for (let i = 0; i < universities.length; i++) {
+                    let obj = universities[i];
+                    console.log(obj);
+                    let row = document.createElement('tr');
+                    let name = document.createElement('td');
+                    let domain = document.createElement('td');
+                    let country = document.createElement('td');
+                    name.innerHTML = obj.name;
+                    domain.innerHTML = obj.domain;
+                    country.innerHTML = obj.country;
+                    row.appendChild(name);
+                    row.appendChild(domain);
+                    row.appendChild(country);
+                    table.appendChild(row);
+
+                }
+            }
+    </script>
+</body>
+</html> */
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Data</title>
+    <style>
+        body {  /* ❌ You had ".body" which won't apply to <body> */
+            height: 100%;
+            background-image: linear-gradient(to right, rgb(211,235,238), rgb(37,169,173));
+            font-family: "Montserrat", "Helvetica Neue", sans-serif; /* ❌ Typo: 'sans-sariff' */
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            background-color: white;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #333;
+        }
+        h1 {
+            color: darkblue;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Fetching and displaying university data</h1>
+        <table id="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Domain</th>
+                    <th>Country</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Dynamic rows will be inserted here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        fetch('http://universities.hipolabs.com/search?country=United+States')
+        .then(res => res.json())
+        .then(json => show(json))
+        .catch(error => console.error("Failed to fetch data:", error)); // ✅ Add error handling
+
+        function show(universities) {
+            let tableBody = document.querySelector('#table tbody'); // ✅ Use <tbody>
+            for (let i = 0; i < universities.length; i++) {
+                let obj = universities[i];
+
+                let row = document.createElement('tr');
+                
+                // ❌ Typo: 'doument' => ✅ 'document'
+                let name = document.createElement('td');
+                let domain = document.createElement('td');
+                let country = document.createElement('td');
+
+                name.textContent = obj.name;
+                domain.textContent = obj.domains[0]; // it's an array
+                country.textContent = obj.country;
+
+                row.appendChild(name);
+                row.appendChild(domain);
+                row.appendChild(country);
+                tableBody.appendChild(row);
+            }
+        }
+    </script>
+</body>
+</html>
