@@ -1,0 +1,39 @@
+/*    --------------------------------------Async-----------------------------------------------------
+
+to return a promise we use async.
+
+Syntax :
+
+          async function myfunction() {
+            return 'hello';
+          }
+    or
+
+        function myFunction() {
+            return Promise.resolve('hello');
+        }
+
+// how to use a promise
+
+  myFunction().then (
+  function(value);
+  function(error);
+  );
+
+  --------------------------------------------------------Await ----------------------------------------
+
+  To make a function wait for a promise, we use await keyword.
+  Await keyword only used within async keyword.
+
+ Syntax :
+
+          let value = await Promise;
+
+    example:  
+              async function myDisplay() {
+              let myPromise =  new Promise (function(resolve,reject) {
+                        resolve ("hi world");
+});
+                 document.getElementById("demo").innerHTML = await myPromise;
+}      
+                 myDisplay(); */

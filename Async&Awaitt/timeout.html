@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"> <!-- ✅ no change -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- ✅ no change -->
+  <title>Timeout Function</title> <!-- 🟠 Minor: fixed spelling "TImeout" -> "Timeout" -->
+</head>
+<body>
+  <h1>JavaScript Async & Await</h1> <!-- 🟠 Minor: spacing fix -->
+  <h4 id="text"></h4>
+
+  <script> /*
+  // basic code with 5 sec delay.
+        async function display() {
+            let myPromise = new Promise(function(myResolve,myReject) {
+                setTimeout(function() {myResolve("Hello world");},5000);
+            });
+            document.getElementById("text").innerHTML = await myPromise;
+        }
+        display();
+    
+ */
+    async function display() {
+      const textBox = document.getElementById("text"); // ✅ NEW: cache the element
+
+      textBox.innerHTML = "Loading..."; // ✅ NEW: show "Loading..." before waiting
+
+      let myPromise = new Promise((resolve, reject) => { // 🟠 REPLACED: added random success/fail
+        setTimeout(() => {
+          const success = Math.random() > 0.3; // ✅ NEW: simulate a 70% chance of success
+          if (success) {
+            resolve("✅ Hello world — success!");
+          } else {
+            reject("❌ Oops! Something went wrong.");
+          }
+        }, 3000); // 🟠 CHANGED: wait 3 seconds instead of 5 for faster feedback
+      });
+
+      try {
+        const result = await myPromise; // ✅ NEW: use await inside try
+        textBox.innerHTML = result;
+      } catch (error) {
+        textBox.innerHTML = error; // ✅ NEW: show error if rejected
+      }
+    }
+
+    display(); // ✅ no change
+  </script>
+</body>
+</html>
+ 

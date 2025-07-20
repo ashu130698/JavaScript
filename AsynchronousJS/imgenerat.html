@@ -5,8 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Random Image Generator</title>
     <style>
+        html, body {
+  height: 100%;
+  margin: 0;
+}
         body{
-            height:100%;
+           
             background-image: linear-gradient(to right, rgb(161, 113, 209), rgb(18, 8, 85));
             font-family: "Montserrat", "Helvetica Neue", "sans-serif";
         }
@@ -22,23 +26,24 @@
             border: 5px solid #fff;
             box-sizing: border-box;
             overflow: hidden;
+            object-fit: cover;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1 style="text-align: center; color: azure;">Random Image Generator</h1>
-        <img id="image" alt="Randum Unsplash Image" loading="lazy"/>
+        <img id="image" alt="Random Unsplash Image" loading="lazy"/>
     </div>
     <script>
-        const url= 'https://awik.io/generate-random-images-unsplash-without-using-api//random'
+        const url= 'https://images.unsplash.com/photo-1458571037713-913d8b481dc6?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=1080&ixid=eyJhcHBfaWQiOjF9&ixlib=rb-1.2.1&q=80&w=1920'
         const img= document.getElementById("image");
         const getImage = async (url) => {
             return fetch(url).then(res => res.url)
         }
         
         getImage(url).then(result => {
-            img.setAttribute('src', result)
+            img.setAttribute('src', url)
         });
     </script>
 </body>
