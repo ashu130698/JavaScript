@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>JavaScript Async & Await</h1> <!-- 🟠 Minor: spacing fix -->
+  <h4 id="text"></h4>
+  <script>
+    const anime = [
+        {
+            title: `Naruto`, body:`Naruto is a Japanese manga series written and illustrated by Masahi Kimoto. It tells the story of Naruto Uzumaki,a young ninja who seeks recognition from his peers and dream of becoming the Hokage,the leader of his village.`
+        },
+        {
+            title: `Doremon`, body:`Nobita Nobi is a ten-year-old Japanese school boy,who is kind hearted and honest,but alsolazy,unlucky,weak,gets bad grades and is bad at sports. One Day, robot cat from the 22nd centuary named Doremon is sent back to past by Nobitas decendants to take care of nobita so that his decendants can have better life.`
+        }
+    ]
+    function getanime() {
+        setTimeout(() => {
+            anime.forEach((anime_series, index) => {
+                console.log(anime_series.title)
+            })
+        
+        },1000);
+
+    }
+    function createanime(anime_series){
+        return new Promise((resolve,reject)=>{
+            setTimeout (() => {
+                anime.push(anime_series);
+                const error = false;
+                if (!error){
+                    resolve();
+                } else{
+                    reject('Error: Something went wrong!')
+                }
+            }, 2000);
+        })
+    }
+    async function display() {
+        try{
+        await createanime({
+            title: `Dragon Ball`, body:`Earth, known asthe Dragon World and designated as "Planet 4032-877" by the celestialhierarchy, is the main setting for the entire Dragon Ball series, as well asrelated media such as Dr. Slump, Nekomajin, and Jaco the Galactic Patrolman.It is mainly inhabited by Earthlings , a term used inclusively to refer toall of the intelligent races native to the planet, including humans,anthropomorphic beings, and monsters.`
+        });
+        getanime();
+    }
+    catch(err) {
+        document.getElementById("text").textcontent = err;
+    }
+    }
+    display();
+  </script>
+</body>
+</html>
