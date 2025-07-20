@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Number Guesser </title>
+    <style>
+        body {
+            height: 100%;
+            background-image: linear-gradient(to right, rgb(113,196,209) rgb(102,89,187));
+            font-family: "Monteserrat", "Helvetica Neue", "sans-serif";
+        }
+    </style>
+</head>
+<body>
+    <h1>Number Giesser</h1>
+    <script> //enterNumber function
+        const enterNumber = () => {
+            return new Promise ((resolve, reject) => {
+                const userNumber = Number(window.prompt("Enter a number (1-15):")); // ask the user to enter a number
+                const randomNum = Math.floor(Math.random() * 15 +1);
+
+                if (isNaN(userNumber)) {
+                    return reject (new Error("Wrong Input Type"));
+                }
+
+                if (userNumber === randomNum) {
+                    resolve({ score :2, randomNum});
+                } else if(userNumber === randomNum -1 || userNumber === randomNum +1) {
+                    resolve({ score :1, randomNum});
+                } else {
+                    resolve ({ score : 0, randomNum});
+                }
+
+            });
+        };
+        //continueGame function
+        const continueGame =() => {
+            return new Promise((resolve) => {
+                if (window.confirm("Do you want to continue?")) {
+                    resolve(true);
+                } else {
+                    resolve(false);
+                }
+            });
+        };
+        // handleGuess function (async recursion)
+        async function handleGuess(totalScore =0, round =1) {
+            try{
+                const result = await enterNumber();
+
+                totalScore += result.score;
+
+                //alert(`Number:${result.randomNum}: you got ${result.score} score`);
+                alert(`Round ${round}:\nNumber : ${result.randomNum} - You got ${result.score} point(s)\nTotal Score: ${totalScore}`)
+
+                const isContinuing = await continueGame();
+
+                if (isContinuing) {
+
+                    //handleGuess(); //recursion loop back
+
+                    handleGuess(totalScore,round + 1);
+                } else {
+                    alert(`Game ends \nRounds Played: ${round}\nFinal Total Score : ${totalScore}`);
+                }
+            } catch (error) {
+                alert(error.message);
+                handleGuess(totalScore, round);
+            }
+        };
+
+        handleGuess(); //handleGuess(0,1) implicitily
+    </script>
+</body>
+</html>
